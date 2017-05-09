@@ -14,7 +14,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: 写给时间的答卷
 
 description: WarmGrid (April + Probe) 的博客
 author:
@@ -24,7 +24,7 @@ author:
   twitter: ''
   pinterest: ''
   linkedin: ''
-  bio: = April + Probe
+  bio: Answerers: April and Probe
   email_md5: ''
 
 rss_path: feed.xml
