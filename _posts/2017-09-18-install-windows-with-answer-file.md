@@ -58,7 +58,7 @@ Windows 应答文件是一个名为 `Autounattend.xml` 的配置, 描述在系�
 3. 在 Windows 系统映像管理器里, "选择 Windows 映像", 载入之前的 `Install.wim`
 4. 创建编录文件 (*.clg), 这个东西对应具体的一个 Windows 系统, 一个 `Install.wim` 里可以有很多系统, 比如 "Windows Server 2008 R2 企业版" / "Windows Server 2008 R2 数据中心版" 等等
 5. 新建应答文件, 然后依次添加应答文件的各种选项
-6. 保存时, 工具会检查你的填写是否有错误, 不报警就 OK 了.
+6. 保存时, 工具会检查你的填写是否有错误, 不报警就 OK 了
 
 制作应答文件是个细心的活儿, 最好手边就有个虚拟机方便你测试. 显然要填全所有项目, 如果漏填了某些项, 那么安装过程到时候还是会停下来等待用户输入, 这就没有意义了. 
 
@@ -98,9 +98,9 @@ Windows 应答文件是一个名为 `Autounattend.xml` 的配置, 描述在系�
 
 具体不多写了, 请参考
 
-- https://msdn.microsoft.com/zh-cn/library/hh825212.aspx#AnswerFile
-- http://www.cnblogs.com/dreamer-fish/p/3476921.html
-- http://www.cnblogs.com/dreamer-fish/p/3468388.html
+- [https://msdn.microsoft.com/zh-cn/library/hh825212.aspx#AnswerFile]()
+- [http://www.cnblogs.com/dreamer-fish/p/3476921.html]()
+- [http://www.cnblogs.com/dreamer-fish/p/3468388.html]()
 
 
 ### 在应答文件中设置安装后自动执行命令
@@ -132,7 +132,7 @@ Windows 应答文件是一个名为 `Autounattend.xml` 的配置, 描述在系�
 
     > oscdimg -n unattend_folder unattend.iso
 
-要注意启动顺序, Windows 安装镜像必须放在第一个加载的设备, 应答文件放第二个. 当你有两个(虚拟)光驱时别弄反了. 测试成功后, 可以把 `Autounattend.xml` 编辑到 iso 镜像的根目录里, 这样就只用一个光驱了, 更方便使用.
+要注意启动顺序, Windows 安装镜像必须放在第一个加载的设备, 应答文件放第二个. 当你有两个(虚拟)光驱时别弄反了. 测试成功后, 可以把 `Autounattend.xml` 编辑到 iso 镜像的根目录里, 这样就只用一个光驱, 更方便使用.
 
 
 
