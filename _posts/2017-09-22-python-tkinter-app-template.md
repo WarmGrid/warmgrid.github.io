@@ -26,7 +26,7 @@ summary: '方便快速做出带界面的小程序'
 总结一些 Tkinter 常用代码片段如下.
 
 
-## 兼容支持 Python2 Python3 的模块导入
+### 兼容支持 Python2 Python3 的模块导入
 
 ```python
 try:
@@ -42,7 +42,7 @@ except ImportError:
 ```
 
 
-## Thinker 中的 log 面板
+### Tkinter 中的 log 面板
 
 ```python
 
@@ -98,7 +98,7 @@ class GUI(tkinter.Frame):
 
 
 
-## Thinker 中的拖放文件支持
+### Tkinter 中的拖放文件支持
 
 需要安装 TkDND (Tcl Plugin) 和 TkinterDnD2 (Python bindings)
 
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
 
 
-## Pyinstaller 打包为 exe
+### Pyinstaller 打包为 exe
 
 ```python
 import os
@@ -194,7 +194,7 @@ os.system(cmd)
 
 
 
-## 杂项
+### 杂项
 
 - 窗口置顶
 - 自定义标题
@@ -224,7 +224,7 @@ if __name__ == '__main__':
 ```
 
 
-## Thinker 各模块的结构
+### Tkinter 各模块的结构
 
 ```python
 # 如果样式太难看, 把所有形如 tkinter.Radiobutton 改成 ttk.Radiobutton
