@@ -98,9 +98,9 @@ Windows 应答文件是一个名为 `Autounattend.xml` 的配置, 描述在系�
 
 具体不多写了, 请参考
 
-- [https://msdn.microsoft.com/zh-cn/library/hh825212.aspx#AnswerFile]()
-- [http://www.cnblogs.com/dreamer-fish/p/3476921.html]()
-- [http://www.cnblogs.com/dreamer-fish/p/3468388.html]()
+- [](https://msdn.microsoft.com/zh-cn/library/hh825212.aspx#AnswerFile)
+- [](http://www.cnblogs.com/dreamer-fish/p/3476921.html)
+- [](http://www.cnblogs.com/dreamer-fish/p/3468388.html)
 
 
 ### 在应答文件中设置安装后自动执行命令
