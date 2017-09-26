@@ -23,7 +23,7 @@ summary: '终于学会怎么做那种带一堆预装软件的盗版盘了, 这�
 
 其中的两个技术, `安装应答文件` 和 `映像捕获` 是独立的, 前者负责无人值守安装, 后者负责在安装包里添加用户指定的软件. 可以根据需求只关注其中的一项. 
 
-步骤 1 请参考之前的 [文章](/2117/09/18/install-windows-with-answer-file.html), 本篇介绍后面的步骤 2-6.
+步骤 1 请参考之前的 [文章](/2017/09/18/install-windows-with-answer-file.html), 本篇介绍后面的步骤 2-6.
 
 
 
@@ -73,7 +73,7 @@ summary: '终于学会怎么做那种带一堆预装软件的盗版盘了, 这�
 
     E:\imagex.exe /capture D: D:\myimage.wim "Custom Server 2008 Install" /compress fast /verify
 
-这个步骤有点儿像做 ghost 备份的感觉. 不同的地方是, `.wim` 的来源和存放位置可以是同样一个分区, 很先进. 执行命令前, 可能需要通过 dir 了解一下每个盘的盘符. 比如我自己执行时, `E:` 是 Win PE 的文件内容, `D:` 是 Windows 参考安装的系统盘. 此外, 要留意整个参考安装系统的大小, 如果预装大量软件, 那么 `compress fast` 也是有可能超过 4G 的, 在 FAT32 系统里会失败. 最后, 要记住自己设的 label "Custom Server 2008 Install", 之后在 `Autounattend.xml` 里有用.
+这个步骤有点儿像做 ghost 备份的感觉. 不同的地方是, `.wim` 的来源和存放位置可以是同样一个分区, 很先进. 执行命令前, 可能需要通过 dir 了解一下每个盘的盘符. 比如我自己执行时, `E:` 是 Win PE 的文件内容, `D:` 是 Windows 参考安装的系统盘. 此外, 要留意整个参考安装系统的大小, 如果预装大量软件, 那么 `/compress fast` 也是有可能超过 4G 的, 在 FAT32 系统里会失败. 最后, 要记住自己设的 label "Custom Server 2008 Install", 之后在 `Autounattend.xml` 里有用.
 
 这一步时间比较长, 完后无论使用什么手段, 要把生成的 wim 文件弄出来. 如果是宿主机上运行虚拟机里的 Win PE, 可以考虑使用网络共享:
 
