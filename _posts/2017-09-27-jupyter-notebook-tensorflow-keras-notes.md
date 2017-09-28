@@ -35,6 +35,10 @@ require(["codemirror/keymap/sublime", "notebook/js/cell", "base/js/namespace"],
 );
 ```
 
+
+
+
+
 ### 在 Jupyter Notebook 中设置自定义快捷键和 cell 背景色
 
 把下面代码放在 `C:\Users\<UserID>\.jupyter\custom\custom.js` 里面.
@@ -116,8 +120,33 @@ setTimeout(function() {
 
 
 
+### 设定 Jupyter 主题
 
+首先安装 `jupyterthemes`:
 
+    pip install --upgrade jupyterthemes
+
+列出预设的主题:
+
+    jt -l
+
+选择主题:
+
+    jt -t grade3 -fs 14 -cellw 1100 -f meslo
+
+目前的主题有:
+
+- chesterish
+- grade3
+- gruvboxd
+- gruvboxl
+- monokai
+- oceans16
+- onedork
+- solarizedd
+- solarizedl
+
+似乎 solarizedl 不能用.
 
 
 
@@ -162,8 +191,6 @@ ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
 
 
 
-
-
 ### 查看 Keras 安装信息
 
 ```python
@@ -172,6 +199,9 @@ keras.__version__
 
 # >>> '2.0.8'
 ```
+
+
+
 
 
 ### 设置 Keras 图像通道的顺序
@@ -190,6 +220,8 @@ keras.__version__
     // channels_last 对应的 input_shape 是 (128, 128, 3)
 }
 ```
+
+
 
 
 
