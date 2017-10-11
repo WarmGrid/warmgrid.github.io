@@ -108,6 +108,7 @@ setTimeout(function() {
     css.innerHTML = `div.cell {background-color: ${color1};}`
     css.innerHTML +=`div.running {background-color: ${color2};}`
     css.innerHTML +=`div.running.selected {background-color: ${color2};}`
+    css.innerHTML +=`div.CodeMirror {font-family: "Yahei Mono"; font-size: 20px;}`
     css.innerHTML +='</style>'
     document.body.appendChild(css);
 }, 2000)
