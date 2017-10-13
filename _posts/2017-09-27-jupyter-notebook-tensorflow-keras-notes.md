@@ -39,6 +39,40 @@ require(["codemirror/keymap/sublime", "notebook/js/cell", "base/js/namespace"],
 
 
 
+### 运行 Jupyter Notebook Cell 时显示执行状态
+
+主要依靠 `sys.stdout.flush()` 和 `print('\r...')`.
+
+`\r` 表示从行首打印.
+
+```python
+import time
+for i in range(10):
+    time.sleep(0.3)
+    print('\r任务进度: {0}%'.format(i*10+10), end='')
+    sys.stdout.flush()
+
+
+
+# >>> 任务进度: 70%  (会不断输出更新到这一行)
+```
+
+
+
+
+
+### 模块变更后让 Jupyter Notebook 能自动载入
+
+
+```python
+%load_ext autoreload
+%autoreload 2
+```
+
+
+
+
+
 ### 在 Jupyter Notebook 中设置自定义快捷键和 cell 背景色
 
 把下面代码放在 `C:\Users\<UserID>\.jupyter\custom\custom.js` 里面.
