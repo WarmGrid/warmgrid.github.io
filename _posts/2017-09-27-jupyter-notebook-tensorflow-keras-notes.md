@@ -73,6 +73,22 @@ for i in range(10):
 
 
 
+### 用指定的浏览器启动 Jupyter Notebook
+
+在 `C:\Users\<USER>\.jupyter` 路径下应该有一个 `jupyter_notebook_config.py` 配置文件. 如果没有, 运行 `jupyter notebook --generate-config` 生成它.
+
+里面所有内容都是被注释掉的, 找到 browser 的部分, 添加类似下面的内容:
+
+```python
+import webbrowser
+webbrowser.register('firefox', None, webbrowser.GenericBrowser('C:/Program Files/Mozilla Firefox/firefox.exe'))
+c.NotebookApp.browser = 'firefox'
+```
+
+
+
+
+
 ### 在 Jupyter Notebook 中设置自定义快捷键和 cell 背景色
 
 把下面代码放在 `C:\Users\<UserID>\.jupyter\custom\custom.js` 里面.
@@ -220,6 +236,80 @@ for i in range(203):
 ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
 
 
+```
+
+
+
+
+
+### Matplotlib 直接引用 seaborn 绘图样式
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.style.use('ggplot')
+data = np.random.randn(50)
+```
+
+
+全部样式如下:
+
+```python
+print(plt.style.available)
+
+# => ['seaborn-paper', 'seaborn-poster', 'seaborn-darkgrid', 'fast', 'ggplot', 'seaborn-pastel', 'bmh', 'seaborn-deep', 'fivethirtyeight', 'grayscale', 'seaborn', 'seaborn-talk', 'seaborn-bright', 'seaborn-white', 'seaborn-ticks', 'seaborn-dark-palette', 'seaborn-dark', '_classic_test', 'seaborn-colorblind', 'dark_background', 'seaborn-whitegrid', 'seaborn-notebook', 'Solarize_Light2', 'seaborn-muted', 'classic']
+```
+
+这些样式都很好:
+
+- seaborn-darkgrid
+- seaborn-pastel
+- bmh
+- ggplot
+
+
+
+
+
+### Matplotlib 的命名颜色
+
+以下代码可以打印所有的命名颜色
+
+```python
+import matplotlib
+for name, hex in matplotlib.colors.cnames.items():
+    print(name, hex)
+
+pylab.rcParams['figure.figsize'] = 8, 24
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.colors as colors
+import math
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+ratio = 1.0 / 3.0
+count = math.ceil(math.sqrt(len(colors.cnames)))
+x_count = count * ratio
+y_count = count / ratio
+x = 0
+y = 0
+w = 1 / x_count
+h = 1 / y_count
+
+for c in colors.cnames:
+    pos = (x / x_count, y / y_count)
+    ax.add_patch(patches.Rectangle(pos, w, h, color=c))
+    ax.annotate(c, xy=pos)
+    if y >= y_count-1:
+        x += 1
+        y = 0
+    else:
+        y += 1
+plt.show()
 ```
 
 
