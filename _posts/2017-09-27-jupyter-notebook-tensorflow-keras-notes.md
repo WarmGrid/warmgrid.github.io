@@ -39,6 +39,56 @@ require(["codemirror/keymap/sublime", "notebook/js/cell", "base/js/namespace"],
 
 
 
+### 运行 Jupyter Notebook Cell 时显示执行状态
+
+主要依靠 `sys.stdout.flush()` 和 `print('\r...')`.
+
+`\r` 表示从行首打印.
+
+```python
+import time
+for i in range(10):
+    time.sleep(0.3)
+    print('\r任务进度: {0}%'.format(i*10+10), end='')
+    sys.stdout.flush()
+
+
+
+# >>> 任务进度: 70%  (会不断输出更新到这一行)
+```
+
+
+
+
+
+### 模块变更后让 Jupyter Notebook 能自动载入
+
+
+```python
+%load_ext autoreload
+%autoreload 2
+```
+
+
+
+
+
+### 用指定的浏览器启动 Jupyter Notebook
+
+在 `C:\Users\<USER>\.jupyter` 路径下应该有一个 `jupyter_notebook_config.py` 配置文件. 如果没有, 运行 `jupyter notebook --generate-config` 生成它.
+
+里面所有内容都是被注释掉的, 找到 browser 的部分, 添加类似下面的内容:
+
+```python
+import webbrowser
+webbrowser.register('firefox', None, webbrowser.GenericBrowser('C:/Program Files/Mozilla Firefox/firefox.exe'))
+c.NotebookApp.browser = 'firefox'
+```
+
+
+
+
+
 ### 在 Jupyter Notebook 中设置自定义快捷键和 cell 背景色
 
 把下面代码放在 `C:\Users\<UserID>\.jupyter\custom\custom.js` 里面.
@@ -186,6 +236,106 @@ for i in range(203):
 ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
 
 
+```
+
+
+
+
+
+### Matplotlib 直接引用 seaborn 绘图样式
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.style.use('ggplot')
+data = np.random.randn(50)
+```
+
+
+全部样式如下:
+
+```python
+print(plt.style.available)
+
+# => ['seaborn-paper', 'seaborn-poster', 'seaborn-darkgrid', 'fast', 'ggplot', 'seaborn-pastel', 'bmh', 'seaborn-deep', 'fivethirtyeight', 'grayscale', 'seaborn', 'seaborn-talk', 'seaborn-bright', 'seaborn-white', 'seaborn-ticks', 'seaborn-dark-palette', 'seaborn-dark', '_classic_test', 'seaborn-colorblind', 'dark_background', 'seaborn-whitegrid', 'seaborn-notebook', 'Solarize_Light2', 'seaborn-muted', 'classic']
+```
+
+这些样式都很好:
+
+- seaborn-darkgrid
+- seaborn-pastel
+- bmh
+- ggplot
+
+
+### Matplotlib 使用 seaborn 调色板中的单个颜色
+
+预览 seaborn 色板
+
+```python
+sns.palplot(sns.color_palette("Set2", 9))
+sns.palplot(sns.cubehelix_palette(8))
+sns.palplot(sns.color_palette("coolwarm", 12))
+```
+
+使用色板中的颜色
+
+```python
+import seaborn as sns
+import itertools
+
+palette = sns.color_palette(sns.color_palette("Set2", 12))
+palette = itertools.cycle(palette)
+
+# 之后在需要使用颜色的地方:
+ax.plot(seq, '.-', color=next(palette))
+
+```
+
+注意必须用 `itertools.cycle()`, 如果只是 `palette = iter(palette)` 转迭代器, 那么 `next(...)` 达到次数后会遇到 `StopIteration`. 而 `itertools.cycle()` 是无限的, 可以一直循环这些颜色.
+
+
+
+
+### Matplotlib 的命名颜色
+
+以下代码可以打印所有的命名颜色
+
+```python
+import matplotlib
+for name, hex in matplotlib.colors.cnames.items():
+    print(name, hex)
+
+pylab.rcParams['figure.figsize'] = 8, 24
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.colors as colors
+import math
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+ratio = 1.0 / 3.0
+count = math.ceil(math.sqrt(len(colors.cnames)))
+x_count = count * ratio
+y_count = count / ratio
+x = 0
+y = 0
+w = 1 / x_count
+h = 1 / y_count
+
+for c in colors.cnames:
+    pos = (x / x_count, y / y_count)
+    ax.add_patch(patches.Rectangle(pos, w, h, color=c))
+    ax.annotate(c, xy=pos)
+    if y >= y_count-1:
+        x += 1
+        y = 0
+    else:
+        y += 1
+plt.show()
 ```
 
 
