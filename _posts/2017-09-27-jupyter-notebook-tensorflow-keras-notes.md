@@ -269,6 +269,32 @@ print(plt.style.available)
 - ggplot
 
 
+### Matplotlib 使用 seaborn 调色板中的单个颜色
+
+预览 seaborn 色板
+
+```python
+sns.palplot(sns.color_palette("Set2", 9))
+sns.palplot(sns.cubehelix_palette(8))
+sns.palplot(sns.color_palette("coolwarm", 12))
+```
+
+使用色板中的颜色
+
+```python
+import seaborn as sns
+import itertools
+
+palette = sns.color_palette(sns.color_palette("Set2", 12))
+palette = itertools.cycle(palette)
+
+# 之后在需要使用颜色的地方:
+ax.plot(seq, '.-', color=next(palette))
+
+```
+
+注意必须用 `itertools.cycle()`, 如果只是 `palette = iter(palette)` 转迭代器, 那么 `next(...)` 达到次数后会遇到 `StopIteration`. 而 `itertools.cycle()` 是无限的, 可以一直循环这些颜色.
+
 
 
 
