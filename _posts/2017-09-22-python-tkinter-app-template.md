@@ -102,8 +102,13 @@ class GUI(tkinter.Frame):
 
 需要安装 TkDND (Tcl Plugin) 和 TkinterDnD2 (Python bindings)
 
-- TkDND (Windows 环境需要选 tkdnd2.8-win32-x86_64.tar.gz) [https://sourceforge.net/projects/tkdnd/files/Windows%20Binaries/TkDND%202.8/]()
-- TkinterDnD2 [https://sourceforge.net/projects/tkinterdnd/files/TkinterDnD2/]()
+- TkDND (Windows 环境需要选 tkdnd2.8-win32-x86_64.tar.gz) [https://sourceforge.net/projects/tkdnd/files/Windows%20Binaries/TkDND%202.8/](https://sourceforge.net/projects/tkdnd/files/Windows%20Binaries/TkDND%202.8/)
+- TkinterDnD2 [https://sourceforge.net/projects/tkinterdnd/files/TkinterDnD2/](https://sourceforge.net/projects/tkinterdnd/files/TkinterDnD2/)
+
+`tkdnd2.8-win32-x86_64.tar.gz` 里面是个 `tkdnd2.8` 文件夹, 该文件夹应该复制到 `C:/Users/<user>/AppData/Local/Continuum/Anaconda2/tcl/tcl8.5/` 路径, 或者当存在其他的 python env 时, 也可能是 `C:/Users/<user>/AppData/Local/Continuum/Anaconda2/envs/python35/tcl/tcl8.6/` 路径
+
+TkinterDnD2 应该放在对应的 site-packages 路径
+
 
 ```python
 
