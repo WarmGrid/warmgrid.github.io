@@ -239,6 +239,53 @@ ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
 ```
 
 
+### 调整 pandas, plt 的预设
+
+包括 pandas 打印时的每行最大字符数, 和 matplotlib 的中文显示, 字体大小, 数字负号显示等等
+
+```python
+
+import numpy as np
+import pandas as pd
+
+pd.set_option('display.width', 200)   # 每行最大字符
+pd.set_option('precision', 3)         # 显示数字精度
+
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+plt.rcParams['axes.unicode_minus'] = False     # 显示数字负号
+plt.rcParams['font.sans-serif'] = ['SimHei']   # 显示中文字体
+
+mpl.rcParams['figure.figsize'] = 10, 6
+mpl.rcParams['figure.dpi'] = 80
+mpl.rcParams['savefig.dpi'] = 100
+mpl.rcParams['font.size'] = 12
+mpl.rcParams['legend.fontsize'] = 'large'
+mpl.rcParams['figure.titlesize'] = 'medium'
+
+plt.style.use('seaborn-whitegrid')
+
+import seaborn as sns
+sns.set(style="white")
+```
+
+
+
+
+
+### 指定 plt 尺寸
+
+除了 `mpl.rcParams['figure.figsize'] = 10, 6` 办法之外, 还可以
+
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(111)
+    # 或者
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
+
+
 
 
 
@@ -249,6 +296,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 plt.style.use('ggplot')
+
 data = np.random.randn(50)
 ```
 
@@ -277,6 +325,8 @@ print(plt.style.available)
 sns.palplot(sns.color_palette("Set2", 9))
 sns.palplot(sns.cubehelix_palette(8))
 sns.palplot(sns.color_palette("coolwarm", 12))
+sns.palplot(sns.color_palette("hls", 6))
+sns.palplot(sns.color_palette("husl", 6))
 ```
 
 使用色板中的颜色
