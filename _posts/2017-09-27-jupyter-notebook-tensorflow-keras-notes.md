@@ -289,6 +289,50 @@ sns.set(style="white")
 
 
 
+### 在subplot 时准确指定位置, 支持跨行列
+
+造一个函数用来返回 subplot 时的 ax, 接收形如 '2x3,1x0,1x2' 的参数 position
+
+- 第一组表示图表的整体长宽, 如 2x3 表示 2 行, 3 列
+- 第二组表示该区域的左上角座标, 从 0 开始计数
+- 第三组表示是否跨行列, 如 1x2 表示跨 1 行, 跨 2 列
+
+```python
+def get_subplot_ax(position):
+    ''' 注意 grid, index, span 都是先 行 后 列'''
+    position = position.split(',')
+    if len(position) == 3:
+        grid, position, span = position
+    elif len(position) == 2:
+        grid, position = position
+        span = '1x1'
+    elif len(position) == 1:
+        grid = position[0]
+        position = span = '1x1'
+    to_tuple = lambda s: tuple(int(n) for n in s.split('x'))
+    rowspan, colspan = to_tuple(span)
+    ax = plt.subplot2grid(to_tuple(grid), to_tuple(position), colspan=colspan, rowspan=rowspan)
+    return ax
+```
+
+
+
+
+
+### 在 subplot 的多个图中保持座标轴 range 一致
+
+需要用到 sharex sharey 属性, 每个属性都有 col row 两个值, 这四种组合都有用
+
+```python
+f, (ax1, ax2) = plt.subplots(2, 1, sharey='col')
+# sharey='col' 当 subplots 处在同一列时, 共享 y 轴
+# sharey='row' 当 subplots 处在同一行时, 共享 y 轴
+```
+
+
+
+
+
 ### Matplotlib 直接引用 seaborn 绘图样式
 
 ```python
