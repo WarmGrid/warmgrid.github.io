@@ -239,6 +239,97 @@ ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
 ```
 
 
+### 调整 pandas, plt 的预设
+
+包括 pandas 打印时的每行最大字符数, 和 matplotlib 的中文显示, 字体大小, 数字负号显示等等
+
+```python
+
+import numpy as np
+import pandas as pd
+
+pd.set_option('display.width', 200)   # 每行最大字符
+pd.set_option('precision', 3)         # 显示数字精度
+
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+plt.rcParams['axes.unicode_minus'] = False     # 显示数字负号
+plt.rcParams['font.sans-serif'] = ['SimHei']   # 显示中文字体
+
+mpl.rcParams['figure.figsize'] = 10, 6
+mpl.rcParams['figure.dpi'] = 80
+mpl.rcParams['savefig.dpi'] = 100
+mpl.rcParams['font.size'] = 12
+mpl.rcParams['legend.fontsize'] = 'large'
+mpl.rcParams['figure.titlesize'] = 'medium'
+
+plt.style.use('seaborn-whitegrid')
+
+import seaborn as sns
+sns.set(style="white")
+```
+
+
+
+
+
+### 指定 plt 尺寸
+
+除了 `mpl.rcParams['figure.figsize'] = 10, 6` 办法之外, 还可以
+
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(111)
+    # 或者
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
+
+
+
+
+
+### 在subplot 时准确指定位置, 支持跨行列
+
+造一个函数用来返回 subplot 时的 ax, 接收形如 '2x3,1x0,1x2' 的参数 position
+
+- 第一组表示图表的整体长宽, 如 2x3 表示 2 行, 3 列
+- 第二组表示该区域的左上角座标, 从 0 开始计数
+- 第三组表示是否跨行列, 如 1x2 表示跨 1 行, 跨 2 列
+
+```python
+def get_subplot_ax(position):
+    ''' 注意 grid, index, span 都是先 行 后 列'''
+    position = position.split(',')
+    if len(position) == 3:
+        grid, position, span = position
+    elif len(position) == 2:
+        grid, position = position
+        span = '1x1'
+    elif len(position) == 1:
+        grid = position[0]
+        position = span = '1x1'
+    to_tuple = lambda s: tuple(int(n) for n in s.split('x'))
+    rowspan, colspan = to_tuple(span)
+    ax = plt.subplot2grid(to_tuple(grid), to_tuple(position), colspan=colspan, rowspan=rowspan)
+    return ax
+```
+
+
+
+
+
+### 在 subplot 的多个图中保持座标轴 range 一致
+
+需要用到 sharex sharey 属性, 每个属性都有 col row 两个值, 这四种组合都有用
+
+```python
+f, (ax1, ax2) = plt.subplots(2, 1, sharey='col')
+# sharey='col' 当 subplots 处在同一列时, 共享 y 轴
+# sharey='row' 当 subplots 处在同一行时, 共享 y 轴
+```
+
+
 
 
 
@@ -249,6 +340,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 plt.style.use('ggplot')
+
 data = np.random.randn(50)
 ```
 
@@ -277,6 +369,8 @@ print(plt.style.available)
 sns.palplot(sns.color_palette("Set2", 9))
 sns.palplot(sns.cubehelix_palette(8))
 sns.palplot(sns.color_palette("coolwarm", 12))
+sns.palplot(sns.color_palette("hls", 6))
+sns.palplot(sns.color_palette("husl", 6))
 ```
 
 使用色板中的颜色
