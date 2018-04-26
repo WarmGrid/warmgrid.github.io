@@ -111,6 +111,11 @@ setTimeout(function() {
         handler : function (event) {
             IPython.notebook.execute_cell();
             return false;}});
+    Jupyter.keyboard_manager.command_shortcuts.add_shortcut('delete', {
+        help : 'delete cell',
+        handler : function (event) {
+            IPython.notebook.delete_cell();
+            return false;}});
     Jupyter.keyboard_manager.edit_shortcuts.add_shortcut('f5', {
         help : 'run cell',
         handler : function (event) {
@@ -145,12 +150,12 @@ setTimeout(function() {
 
     function random_hue_color(label, s, l) {
       // console.log(Math.abs(label.hashCode()))
-      var hash_color = (Math.abs(label.hashCode()) % 360) / 360 * 100
+      var hash_color = (Math.abs(label.hashCode()) % 360)
       return `hsl(${hash_color}, ${s}%, ${l}%)`
     }
 
     var notebook_path = IPython.notebook.notebook_path
-    var color1 = random_hue_color(notebook_path, 20, 90)
+    var color1 = random_hue_color(notebook_path, 20, 95)
     var color2 = random_hue_color(notebook_path, 40, 80)
 
     var css = document.createElement("style")
@@ -198,6 +203,32 @@ setTimeout(function() {
 - solarizedl
 
 似乎 solarizedl 不能用.
+
+
+
+
+
+### 临时调整 notebook css 样式
+
+比如拿 notebook 结合 python paramiko 等工具, 登录多台机器 shell 管理时, 可能会希望命令行输出的文字小一些, 以防占用太多屏幕
+
+这时在 cell 里执行以下命令即可
+
+```python
+
+%%html
+<style>
+.output_text {font-size: 12px; }
+.output_text pre {line-height: 12px; font-family: "Monaco";}
+
+.text_cell_render pre {line-height: 11px;}
+.rendered_html pre {line-height: 11px; }
+.text_cell_render pre code {font-size: 12px;}
+.rendered_html pre code {font-size: 12px;}
+
+.output_text pre, .text_cell_render pre {padding-bottom: 5px}
+</style>
+```
 
 
 
