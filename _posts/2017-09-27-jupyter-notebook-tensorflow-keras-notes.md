@@ -155,14 +155,18 @@ setTimeout(function() {
     }
 
     var notebook_path = IPython.notebook.notebook_path
-    var color1 = random_hue_color(notebook_path, 20, 95)
-    var color2 = random_hue_color(notebook_path, 40, 80)
+    var color_code = random_hue_color(notebook_path, 20, 95)
+    var color_text = random_hue_color(notebook_path, 15, 97)
+    var color_running = random_hue_color(notebook_path, 40, 80)
+    var color_selected = random_hue_color(notebook_path, 25, 90)
 
     var css = document.createElement("style")
     css.type = "text/css"
-    css.innerHTML = `div.cell {background-color: ${color1};}`
-    css.innerHTML +=`div.running {background-color: ${color2};}`
-    css.innerHTML +=`div.running.selected {background-color: ${color2};}`
+    css.innerHTML = `div.text_cell {background-color: ${color_text} ;}`
+    css.innerHTML +=`div.code_cell {background-color: ${color_code};}`
+    css.innerHTML +=`div.running {background-color: ${color_running};}`
+    css.innerHTML +=`div.running.selected {background-color: ${color_running};}`
+    css.innerHTML +=`div.selected {background-color: ${color_selected};}`
     css.innerHTML +=`div.CodeMirror {font-family: "Yahei Mono"; font-size: 20px;}`
     css.innerHTML +='</style>'
     document.body.appendChild(css);
@@ -226,7 +230,9 @@ setTimeout(function() {
 .text_cell_render pre code {font-size: 12px;}
 .rendered_html pre code {font-size: 12px;}
 
-.output_text pre, .text_cell_render pre {padding-bottom: 5px}
+.output_text pre, .text_cell_render pre {padding: 0.5ex;}
+.container {width:100% !important;}
+.prompt {min-width: 10ex;}
 </style>
 ```
 
