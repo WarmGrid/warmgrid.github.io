@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 翻译: VMware Infrastructure 架构概述
+title: 翻译 - VMware Infrastructure 架构概述
 tags:
 - vSphere
 status: publish
@@ -24,7 +24,7 @@ summary: '主要由机器翻译的 ESXi + vCenter Server 架构概述'
 **VMware® Infrastructure是业界首个完整的基础架构虚拟化套件**，允许企业和小型企业通过虚拟化转变，管理和优化其IT系统基础架构。VMware Infrastructure在集成产品中提供全面的虚拟化，管理，资源优化，应用程序可用性和操作自动化功能。
 
 
-![Figure01](./vmware-infrastructure-architecture-overview/01.png)
+![Figure01](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/01.png)
 
 图1-1：VMware Infrastructure
 
@@ -69,7 +69,7 @@ VMware Infrastructure包括以下组件，如图1-1所示：
 **借助VMware Infrastructure，IT部门可以使用其现有的行业标准技术和硬件构建虚拟数据中心。**无需购买专用硬件。此外，VMware Infrastructure允许用户创建由管理服务器集中管理的虚拟数据中心，并可通过多种界面进行控制。
 
 
-![Figure02](./vmware-infrastructure-architecture-overview/02.png)
+![Figure02](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/02.png)
 
 图1-2：VMware Infrastructure数据中心物理构建块
 
@@ -97,7 +97,7 @@ VMware Infrastructure包括以下组件，如图1-1所示：
 VirtualCenter Management Server为数据中心提供了方便的单点控制。它在Windows 2003 Server上运行，以提供许多重要的数据中心服务，如访问控制，性能监控和配置。它统一了各个计算服务器的资源，以便在整个数据中心的虚拟机之间共享。如图1-3所示，VirtualCenter Management Server负责管理向计算服务器分配虚拟机。VirtualCenter Management Server还根据系统管理员设置的策略管理给定计算服务器内虚拟机的资源分配。
 
 
-![Figure03](./vmware-infrastructure-architecture-overview/03.png)
+![Figure03](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/03.png)
 
 图1-3：VirtualCenter Management Server集中管理虚拟机到物理服务器的分配
 
@@ -121,7 +121,7 @@ VMware Infrastructure为数据中心管理和虚拟机访问提供了一系列�
 
 VMware Infrastructure虚拟化整个IT基础架构，包括服务器，存储和网络。它聚合这些异构资源，并在虚拟环境中呈现简单而统一的元素集。**借助VMware Infrastructure，IT资源可以像共享实用程序一样进行管理，并动态配置到不同的业务部门和项目，而无需担心底层硬件差异和限制。**
 
-![Figure04](./vmware-infrastructure-architecture-overview/04.png)
+![Figure04](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/04.png)
 
 图1-4：虚拟数据中心架构
 
@@ -158,7 +158,7 @@ VMware Infrastructure虚拟化整个IT基础架构，包括服务器，存储和
 
 虚拟资源所有者无需关心底层群集的物理组成（数量服务器，CPU的数量和类型 比如多核，超线程等）以供应资源。他们只是根据聚合可用资源设置资源配置策略。VMware Infrastructure将自动将适当的资源动态分配给这些策略边界内的虚拟机。
 
-![Figure05](./vmware-infrastructure-architecture-overview/05.png)
+![Figure05](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/05.png)
 
 图1-5：主机，群集和资源池
 
@@ -183,7 +183,7 @@ VMware VMotion，VMware DRS和VMware HA是分布式服务，可实现高效，�
 如前所述，虚拟机通过VMware ESX Server在各个物理x86服务器上运行并消耗资源。VMotion支持将正在运行的虚拟机从一台物理服务器迁移到另一台物理服务器而不会中断服务，如图1-6所示。这允许虚拟机从负载很重的服务器移动到负载较轻的服务器。效果是更有效的资源分配。因此，通过VMotion，可以跨物理服务器动态地将资源重新分配给虚拟机。
 
 
-![Figure06](./vmware-infrastructure-architecture-overview/06.png)
+![Figure06](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/06.png)
 
 图1-6：VMware VMotion
 
@@ -197,7 +197,7 @@ VMware VMotion，VMware DRS和VMware HA是分布式服务，可实现高效，�
 > [vSphere DRS](https://vspherecentral.vmware.com/t/resource-management-and-availability/vsphere-resources-and-availability/vsphere-drs/)
 
 
-![Figure07](./vmware-infrastructure-architecture-overview/07.png)
+![Figure07](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/07.png)
 
 图1-7：VMware DRS
 
@@ -227,7 +227,7 @@ VMware HA的工作原理是在每个物理服务器上放置代理，以便与�
 
 > [VMware HA: Deployment Best Practices](https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/vmw-server-wp-bestpractices-white-paper.pdf)
 
-![Figure08](./vmware-infrastructure-architecture-overview/08.png)
+![Figure08](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/08.png)
 
 图1-8：VMware HA
 
@@ -241,7 +241,7 @@ VMware HA的工作原理是在每个物理服务器上放置代理，以便与�
 **VMware Infrastructure是唯一提供丰富的虚拟网络元素的解决方案**，它使数据中心中的虚拟机网络像在物理环境中一样简单和简单。此外还支持在物理环境中无法实现的一组新功能，因为物理世界中的许多限制都不适用。
 
 
-![Figure09](./vmware-infrastructure-architecture-overview/09.png)
+![Figure09](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/09.png)
 
 图1-9：网络架构
 
@@ -284,7 +284,7 @@ vSwitch的工作方式类似于二层物理交换机。每个物理服务器都�
 VMware Infrastructure Storage Architecture由抽象层组成，可隐藏和管理物理存储子系统之间的复杂性和差异，并为虚拟环境提供简单的标准存储元素（参见图1-10）。对于每个虚拟机内的应用程序和客户操作系统，存储简单地表示为连接到虚拟总线逻辑或LSI SCSI主机总线适配器的SCSI磁盘。
 
 
-![Figure10](./vmware-infrastructure-architecture-overview/10.png)
+![Figure10](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/10.png)
 
 图1-10：存储架构
 
@@ -308,7 +308,7 @@ VMFS还支持裸设备映射（RDM）。RDM为虚拟机提供了一种机制，�
 - Microsoft群集服务（MSCS）的任何使用都跨越物理服务器：虚拟到虚拟群集以及物理到虚拟群集。群集数据和仲裁磁盘应配置为RDM而不是共享VMFS上的文件。
 
 
-![Figure11](./vmware-infrastructure-architecture-overview/11.png)
+![Figure11](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/11.png)
 
 图1-11：裸设备映射
 
@@ -321,7 +321,7 @@ RDM可以被视为从VMFS卷到原始LUN的符号链接（参见图1-11）。映
 VMware Infrastructure的存储架构支持简单的虚拟机备份解决方案：VMware Consolidated Backup。**Consolidated Backup为虚拟机的无代理备份提供了易于使用的集中式设施。**如图1-12所示，Consolidated Backup与驻留在单独备份代理服务器上的第三方备份代理配合使用（不在运行ESX Server的服务器上），但不需要虚拟机内的代理。第三方备份代理管理备份计划。在需要备份时启动Consolidated Backup。启动后，Consolidated Backup会运行一组预备份脚本，以使虚拟磁盘停顿以拍摄其快照。然后，它运行一组解冻后脚本，以将虚拟机恢复到正常运行状态。同时，它将磁盘快照安装到备份代理服务器。最后，第三方备份代理将已装入快照上的文件备份到其备份目标。通过虚拟磁盘快照并随时备份它们而不必担心备份窗口或需要停止应用程序，Consolidated Backup为虚拟环境提供了一种简单，低侵入性和低开销的备份解决方案。
 
 
-![Figure12](./vmware-infrastructure-architecture-overview/12.png)
+![Figure12](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/12.png)
 
 图1-12：Consolidated Backup的工作原理
 
@@ -337,7 +337,7 @@ ESX Server是一个虚拟化层，它将物理服务器的处理器，内存，�
 
 
 
-![Figure13](./vmware-infrastructure-architecture-overview/13.png)
+![Figure13](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/13.png)
 
 图1-13：VMware ESX Server外部接口组件
 
@@ -374,7 +374,7 @@ VC Agent通过VI API与Host Agent通信，如图1-13所示。其主要任务是�
 **vCenter Server为数据中心提供了方便的集中管理驾驶舱。** 它汇集了来自多个ESX Server安装的物理资源，并在虚拟环境中配置虚拟机时为系统管理员提供了一组简单灵活的资源。
 
 
-![Figure14](./vmware-infrastructure-architecture-overview/14.png)
+![Figure14](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/14.png)
 
 图1-14：vCenter Server组件
 
@@ -408,7 +408,7 @@ vCenter Server有四个关键接口：
 
 用户可以通过三种不同的方式管理VMware Infrastructure数据中心或访问虚拟机控制台：VI Client，通过Web浏览器进行Web访问或终端服务（如Windows终端服务或Xterm）。
 
-![Figure15](./vmware-infrastructure-architecture-overview/15.png)
+![Figure15](https://raw.githubusercontent.com/WarmGrid/warmgrid.github.io/master/_posts/vmware-infrastructure-architecture-overview/15.png)
 
 图1-15：VMware Infrastructure访问和控制
 
