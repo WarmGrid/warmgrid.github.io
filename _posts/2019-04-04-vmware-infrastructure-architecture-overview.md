@@ -7,7 +7,7 @@ status: publish
 type: post
 published: true
 
-summary: '主要由机器翻译的 ESXi + vCenter Server 架构概述'
+summary: '介绍 VMware 虚拟化架构的几个主要组件, 计算, 存储, 网络, 高级特性如 HA, DRS, 最后有 ESXi + vCenter Server 的功能模块图'
 
 ---
 
