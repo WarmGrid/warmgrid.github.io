@@ -7,12 +7,12 @@ status: publish
 type: post
 published: true
 
-summary: '主要由机器翻译'
+summary: '介绍了 ESXi 虚拟交换机, 端口组, 以及更高级的故障切换和安全特性'
 
 ---
 
 
-机器翻译的 [VMware Infrastructure Architecture Overview](https://www.vmware.com/pdf/vi_architecture_wp.pdf)
+主要由机器翻译的 [VMware Infrastructure Architecture Overview](https://www.vmware.com/pdf/vi_architecture_wp.pdf)
 
 
 
