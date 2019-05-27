@@ -85,7 +85,7 @@ summary: '查看代码: 用 VS Code 的 Remote-SSH 远程访问到 Linux, 调试
     
 然后在 VSCode 主界面 `ctrl+shift+p` 选 `Remote.SSH: Open Configuration File`, 输入以下内容:
 
-    Host lhs-explore-56144               <- 连接标识, 随便写
+    Host dev-56144               <- 连接标识, 随便写
         HostName 172.16.xx.xxx           <- 远程机器 IP
         User root
         IdentityFile D:/.ssh/vscode_rsa  <- 私钥的本地完整路径
