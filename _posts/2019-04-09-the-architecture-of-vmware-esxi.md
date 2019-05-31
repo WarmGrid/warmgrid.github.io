@@ -215,6 +215,12 @@ VI API实际上是VMware提供的管理客户端使用的，例如VI Client和�
 
 VI API和CIM标准一起提供了从远程或中心位置管理ESXi系统的综合方法。这种模式的优点在于，不是依赖于本地安装的代理，而是必须在底层平台更新时进行调整，并在更新时重新安装和管理，所有与系统监视和管理相关的软件都可以存在于外部和集中式系统。与管理多个分布式代理相比，维护此软件变得更加容易。这种管理方法还使ESXi主机成为无状态实体，因为在主机上无需本地安装。消除代理在本地运行也意味着所有计算资源都可用于运行虚拟机。
 
+> vSphere 至少有三种主要的 cli [VMware vSphere 6.5 Documentation Library](https://pubs.vmware.com/vsphere-6-5/index.jsp?topic=%2Fcom.vmware.vcli.getstart.doc%2FGUID-24E7EEFC-08F1-451C-850C-5F158322BAC9.html)
+>
+> 1. DCLI: 能在 vCSA (Linux 版 vCenter Server) 里面用
+> 2. PowerCLI: 只能在 Windows 版 vCenter Server 里面用
+> 3. ESXcli: 只能管理单个 ESXi
+
 
 
 
@@ -246,7 +252,7 @@ Bootstrap | 直接从引导加载程序 | 服务控制台驱动
 
 Charu Chaubal是VMware的技术营销经理，专注于企业数据中心管理，专注于安全性。在此之前，他曾在Sun Microsystems工作，在那里他有超过7年的设计和开发分布式资源管理和网格基础设施软件解决方案的经验。Charu获得宾夕法尼亚大学工程学士学位和博士学位。来自加州大学圣巴巴拉分校，他在那里研究了复杂流体的数值模拟。他是众多出版物的作者，并在数据中心自动化和数字价格优化领域拥有多项专利。
 
-####致谢
+#### 致谢
 
 作者要感谢Olivier Cremel和John Gilmartin在撰写本文档时提供的宝贵帮助。
 
