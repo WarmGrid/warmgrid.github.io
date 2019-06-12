@@ -590,7 +590,7 @@ for tup in expectations:
 ```
 
 
-# 人家的方案
+人家的方案
 
 ```python
 from itertools import product
@@ -614,7 +614,7 @@ def get_pins(observed):
 
 形状是一排 1 挨着一排 0, 所有的 0 和 1 都是顺时针卷曲
 
-# 自己的方案
+自己的方案
 
 ```python
 def transpose(data):
