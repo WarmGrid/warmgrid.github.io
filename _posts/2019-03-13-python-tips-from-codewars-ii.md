@@ -275,7 +275,7 @@ C      | 11:30 - 12:15, 15:00 - 16:30, 17:45 - 19:00
 
 自己的方案
 
-```python {cmd=true}
+```python
 def delta(start, end):
   return 60*(int(end[:2]) - int(start[:2])) + (int(end[3:]) - int(start[3:]))
 
@@ -384,7 +384,7 @@ LCS 举例
 
 自己的方案
 
-```python {cmd=true}
+```python
 def lcs(x, y):
   if len(x) == 1:
     return x if x in y else ''
@@ -409,7 +409,7 @@ print('me')
 
 单词较长时, 这个办法更快
 
-```python {cmd=true}
+```python
 import itertools
 def lcs(x, y):
   for length in reversed(range(len(x)+1)):
@@ -461,7 +461,7 @@ def lcs(x, y):
 
 更简单的办法, 直接在 matrix 里记录全路径
 
-```python {cmd=true}
+```python
 
 def lcs(x, y):
   lenx = len(x)
