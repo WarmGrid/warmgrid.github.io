@@ -391,6 +391,7 @@ def next_gen(cells):
 
 
 人家的方案
+
 ```python
 def next_gen(cells):
     N = len(cells)
