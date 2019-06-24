@@ -217,3 +217,93 @@ Data URI 一般用在 img, 或 css 需定义图片资源时, 例如:
 
 
 
+### 在 markdown cell 里 escape `$`
+
+有些编程语言如 CSharp 等会大量使用 `$` 符号, 在写笔记时 markdown cell 会把成对 `$` 中间的内容识别为 latex, 需要禁用这个功能
+
+Jupyter Notebook 的 markdown 是 gfm, 所以又分为两种情况: 
+
+1. 禁止 markdown cell 中的普通文本 (例如 `$xxx$`) 被识别为 latex
+2. 禁止 markdown cell 中的 codeblock (例如 ```c#\n\n $xxx$ \n```) 被识别为 latex
+
+对于第一种情况, 在 custom.js 里添加如下内容就可以了, 改掉 latex 的定界符 ['$','$']
+
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['==','=='], ['\\(','\\)']],  // 这里默认设置是 [['$','$'], ['\\(','\\)']],
+            processEscapes: true
+        }
+    });
+
+注意这个更改必须是在 custom.js 里, 完后需要重启 jupyter (如果已经打开了 notebook, 只是添加一个 %%html 开头的 cell 里去设置, 没用)
+
+对于第二种情况, 没找到好办法, 一旦进入 codeblock, 转换规则就不受 MathJax.Hub.Config 控制了
+
+目前唯一找到的办法是换行, 例如 `$xxxxx \n\n xxxx$` 这之间有连续两个换行, 就不会被识别为 latex
+
+
+
+### 使用其他编程语言执行 cell code
+
+Jupyter Notebook 是有许多种编程语言 kernel 的, 但有时候在 python notebook 中, 要临时对单独的 cell 换个语言解释执行, 或者在一个 notebook 里同时需要很多种语言解释执行, 可以自定义 cellmagic 来实现这个功能
+
+在 Jupyter Notebook 里, cellmagic 是指以两个 `%` 开头的魔法命令(linemagic 是一个 `%`)
+
+这里自定义一个 `%%csharp`, 用于执行 C# 代码, 首先找个普通的 cell 粘贴运行以下代码:
+
+
+```python
+import subprocess
+import os
+from IPython.core.magic import register_cell_magic
+
+def run_command(cmd):
+  print('> running: ', cmd)
+  try:
+    output = subprocess.check_output(
+        cmd, stderr=subprocess.STDOUT, shell=True, timeout=3,
+        universal_newlines=True)
+  except subprocess.CalledProcessError as exc:
+    print("status: FAIL", exc.returncode, exc.output)
+    return exc.returncode
+  else:
+    print("output: \n{}\n".format(output))
+    return 0
+
+def compile_and_run(code, filename):
+  with open(filename + '.cs', 'w') as f:
+    f.write(code)
+  returncode = run_command('mcs {}.cs'.format(filename))
+  if returncode == 0:
+    run_command('{}.exe'.format(filename))
+
+@register_cell_magic
+def csharp(line, cell):
+    "csharp build cell magic"
+    compile_and_run(cell, filename=os.getcwd().replace('\\', '/')+'/temp')
+```
+
+上面的代码中, 最重要的是 `def csharp(line, cell):` 这里, 决定了自定义的 cellmagic 怎么触发, 其余两个函数 `compile_and_run` `run_command` 是为了方便调用的, 未来可以改造成执行 C 代码, 等等
+
+运行之后, 新建个 cell, 在最开始指定 `%%csharp`, 就可以使用 CSharp 执行了 (这里我的环境是 Mono, 所以是 `mcs file.cs`)
+
+
+到这一步仍然有问题, 还需要对 cell 指定对应语言的语法高亮, 否则会沿用 python 的语法高亮
+
+方法是在 custom.js 里添加一段:
+
+
+    require(['notebook/js/codecell'], function(codecell) {
+        codecell.CodeCell.options_default.highlight_modes['magic_text/x-csharp'] = {'reg':[/^%%csharp/]};
+        Jupyter.notebook.events.one('kernel_ready.Kernel', function(){
+            Jupyter.notebook.get_cells().map(function(cell){
+                if (cell.cell_type == 'code'){ cell.auto_highlight(); } 
+            }) ;
+        });
+    });
+
+就可以了, 这样就可以对 `%%csharp` 开头的 cell 显示为 CSharp 的语法高亮
+
+注意: `'magic_text/x-csharp'` 是各种语言的标识, 通常都可以直接猜出来, 但 C 语言是 `x-csrc` 而不是 `x-c`, 所以对于 C 语言, 这里的写法应该是:
+
+    codecell.CodeCell.options_default.highlight_modes['magic_text/x-csrc'] = {'reg':[/^%%gcc/]};
