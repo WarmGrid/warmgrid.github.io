@@ -206,14 +206,14 @@ embed_file(r'C:\Users\Probe\Downloads\test.epub')
 
 Data URI 一般用在 img, 或 css 需定义图片资源时, 例如:
 
-    <img width="16" height="16" alt="star" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfO......hB0SlBCBMQiB0UjIQA7" />
+    <img width="16" height="16" alt="star" src="data:image/gif;base64,R0lGODlhEAAQA......B0UjIQA7" />
 
-其中, 所有的 MIME types 可以参考 [Incomplete list of MIME types - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)
+其中, 所有的 MIME types 可以参考 [Incomplete list of MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)
 
 `application/octet-stream` 是除了文本以外的默认 MIME type, 虽然可以根据文件名推测出更具体的 MIME type, 但是测试了没什么用, 还是都写这个 `application/octet-stream` 吧
 
 > 长度限制: 虽然 Firefox 支持无限长度的 data URLs，但是标准中并没有规定浏览器必须支持任意长度的 data URIs。比如，Opera 11浏览器限制 URLs 最长为 65535 个字符，这意味着 data URLs 最长为 65529 个字符（如果你使用纯文本 data:, 而不是指定一个 MIME 类型的话，那么 65529 字符长度是编码后的长度，而不是源文件）。  
-> [Data URLs - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/data_URIs)
+> [Data URLs](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/data_URIs)
 
 
 
