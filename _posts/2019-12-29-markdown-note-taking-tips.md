@@ -108,7 +108,7 @@ drops those items which don’t contain a price:
             return item
 ```
 
-- 简阅, 只能转换整个网页, 对代码块使用四空格缩进, 会删掉正文出现的所有 `<h1>`
+- 简悦, 只能转换整个网页, 对代码块使用四空格缩进, 会删掉正文出现的所有 `<h1>`
 
 - markdownizr, 会在代码块周围遗留 `<pre>`
 
@@ -227,12 +227,14 @@ Typora 自带支持, 类比于其他软件的明黄色高亮, 可用 css 调整�
 
 需要 VSCode + 扩展 `Markdown Extended`, 启动 md 预览就能看到了
 
-在 Typora 里虽然不识别, 但也保留了相对易读的样式, 类似一个四空格缩进的代码块, 推荐
+在 Typora 里虽然不识别, 也保留了相对易读的样式, 类似一个四空格缩进的代码块, 语义比较清楚
 
-另附所有支持的标记:
+唯独有个小问题, Typora 输入四个空格缩进时, 它会在行首自动添加一个 `\u200b` 字符 ([u200b instead of tab](https://github.com/typora/typora-issues/issues/2039) 为让普通段落能具备首行缩进效果), 于是从 VSCode 看来, 就认不出这是一个 Admonition 块了, 解决办法: 在 Typora 中切换源代码模式, 删掉 `\u200b` 字符就行
+
+另附 Admonition 所有支持的标记:
 
 ```
-note | summary, abstract, tldr | info, todo | tip, hint | success, check, done | question, help, faq | warning, attention, caution | failure, fail, missing | danger, error, bug | example, snippet | quote, cite
+note | summary/abstract/tldr | info/todo | tip/hint | success/check/done | question/help/faq | warning/attention/caution | failure/fail/missing | danger/error/bug | example/snippet | quote/cite
 ```
 
 
@@ -264,7 +266,7 @@ warning text
 
 
 
-恰当的使用颜色高亮 + 注记, 有一些笔记的样子了, 如果做到 LiquidText 那样就更好了, 还需研究
+恰当的使用颜色高亮 + 注记, 你的 Markdown 文档开始有一些学习笔记的样子了, 如果能做到 LiquidText 那样就更好了, 还需研究
 
 
 
@@ -290,9 +292,9 @@ warning text
 
 
 
-**方案2 VSCode `@import`**
+**方案2 `@import`**
 
-需要 VSCode + [插件 Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/file-imports) 写法:
+这个是导入而不是引用, 需要 VSCode + [插件 Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/file-imports) 写法:
 
 ```
 @import "你的文件"
@@ -308,13 +310,35 @@ warning text
 
 
 
+**方案3 使用 Notable**
+
+Notable 通过在 Front-Matter 里添加元数据来管理一系列 md 文档, 最开始吸引我的是 Notable 对标签的处理, 它的标签可以像文件夹那样分层, 于是分类的需求和标记的需求, 就用这种标签统一解决了
+
+除此以外 Notable 对 md 互相链接也做了一些自己的设计, 见 [官方文档](https://cheatsheet.md/notable.pdf) 的 Deep Linking 部分
+
+```markdown
+[Example](@note/Example.md)
+
+[](@note/Example.md)
+
+[[Title|Example.md]]
+
+[[Example]]
+```
+
+以上四种语法, 都表示链接到另一个 md 文档 Example.md, 此外还可以链接到标签, 链接到搜索, 链接到附件等
+
+但是, 不能链接到另一个 md 中的指定标题
+
+
+
 ### 指向另一个 Markdown 文本的指定位置
 
-比如 OneNote 和 Notion 有这个功能, 为每个段落都生成自己的链接
+比如 OneNote 和 Notion 有这个功能, 文档中的每个段落都有自己的独特链接
 
-在编辑 Markdown 时, 没找到这个的解决办法
+在 Markdown 的编辑器和管理工具里, 暂时没找到这个的解决办法
 
-但是 Markdown 生成 HTML 之后, 倒是很好解决, 参考 [Markdown 拓展 Header Anchors | VuePress](https://v1.vuepress.vuejs.org/zh/guide/markdown.html#header-anchors)
+Markdown 生成 HTML 之后, 倒是很好解决, 参考 [Markdown 拓展 Header Anchors VuePress](https://v1.vuepress.vuejs.org/zh/guide/markdown.html#header-anchors)
 
 
 
@@ -324,7 +348,17 @@ warning text
 
 Typora 里有同目录的文件内容搜索
 
-各大笔记软件, VSCode, VNote 当然更不用说了, 都提供了更多的搜索
+各大笔记软件, VSCode, VNote 当然更不用说了, 都提供了更强大的搜索
+
+
+
+自从 Everything v1.4 版本开始, 可以使用文件内容搜索, 语法 `content:`, 例如:
+
+```
+"D:\Path\to\Your\Notes\" content:匹配关键词
+```
+
+
 
 
 
@@ -344,7 +378,7 @@ Typora 里有同目录的文件内容搜索
 
 ### 在 Markdown 中修复中英文空格
 
-这个不能用 pangu, 文中有 `行内代码` 时会给修复乱掉, 可以使用 [louisun/HeySpace: 中英文混排自动加空格](https://github.com/louisun/HeySpace) 效果挺好
+这个不能用 pangu, 因为文中有 `行内代码` 时会给修复乱掉, 可以使用 [louisun/HeySpace: 中英文混排自动加空格](https://github.com/louisun/HeySpace) 效果挺好
 
 笔记来源太多, 别太在意这些细节
 
