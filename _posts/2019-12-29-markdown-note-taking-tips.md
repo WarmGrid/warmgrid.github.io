@@ -71,21 +71,20 @@ Markdown 格式特别适合记录自己创作的笔记, 以及摘抄技术类文
 
 **bad 转换后的文本存在大量 `\` 转义符**
 
-存在 `_-=` 等字符时, 会被转换成这样:
+大部分的 html to md 插件, 在正文存在 `_-=` 等字符时, 会被转换成这样:
 
-```
-...
-drops those items which don’t contain a price:
+    ...
+    drops those items which don’t contain a price:
 
-    vat\_factor \= 1.15
+        vat\_factor \= 1.15
 
-    def process\_item(self, item, spider):
-        if item.get('price'):
-            if item.get('price\_excludes\_vat'):
-                item\['price'\] \= item\['price'\] \* self.vat\_factor
-            return item
-...
-```
+        def process\_item(self, item, spider):
+            if item.get('price'):
+                if item.get('price\_excludes\_vat'):
+                    item\['price'\] \= item\['price'\] \* self.vat\_factor
+                return item
+    ...
+
 
 - copycat, 但它的其他功能都很好
 - 其他大部分同类型扩展, 都不能准确处理转义
@@ -96,29 +95,30 @@ drops those items which don’t contain a price:
 
 会识别为这样
 
-```
-drops those items which don’t contain a price:
+    ...
+    drops those items which don’t contain a price:
 
-    vat_factor = 1.15
+        vat_factor = 1.15
 
-    def process_item(self, item, spider):
-        if item.get('price'):
-            if item.get('price_excludes_vat'):
-                item['price'] = item['price'] * self.vat_factor
-            return item
-```
+        def process_item(self, item, spider):
+            if item.get('price'):
+                if item.get('price_excludes_vat'):
+                    item['price'] = item['price'] * self.vat_factor
+                return item
+    ...
+
+以下插件属于此类情况:
 
 - 简悦, 只能转换整个网页, 对代码块使用四空格缩进, 会删掉正文出现的所有 `<h1>`
-
 - markdownizr, 会在代码块周围遗留 `<pre>`
-
 - [Web Clipper](https://github.com/webclipper/web-clipper) 在一些网站能用, 一些网站失效
+- [Maoxian web clipper](https://mika-cn.github.io/maoxian-web-clipper/index-zh-CN.html) 自定义选项多, 同时会下载图片附件, 数学公式和代码格式保留完好
 
-  
+
 
 **better 能自动识别语言种类**
 
-希望最终得到这样的效果, 没找到这种工具
+希望最终得到这样的效果
 
     drops those items which don’t contain a price:
         
@@ -132,13 +132,14 @@ drops those items which don’t contain a price:
                     return item
         ```
 
+没找到这种工具
 
 
 同样, 能顺带提取评论的插件也没找到, 需要自己定制
 
 保留脚注也别想了, 例如 [MarginNote & LiquidText | 文献阅读工具能怎么用？](https://sspai.com/post/54112) 里的脚注, 这个不重要
 
-结论: 简单情况用 copycat, 搞不定就看 Web Clipper 和 简阅, 选个排版好的
+结论: 简单情况用 copycat, 搞不定就看 Maoxian web clipper 和 简阅, 选个排版好的
 
 
 
@@ -338,7 +339,7 @@ Notable 通过在 Front-Matter 里添加元数据来管理一系列 md 文档, �
 
 在 Markdown 的编辑器和管理工具里, 暂时没找到这个的解决办法
 
-Markdown 生成 HTML 之后, 倒是很好解决, 参考 [Markdown 拓展 Header Anchors VuePress](https://v1.vuepress.vuejs.org/zh/guide/markdown.html#header-anchors)
+Markdown 生成 HTML 之后, 倒是很好解决, 各种 md to site 工具都可以, 参考 [Markdown 拓展 Header Anchors VuePress](https://v1.vuepress.vuejs.org/zh/guide/markdown.html#header-anchors)
 
 
 
@@ -348,8 +349,7 @@ Markdown 生成 HTML 之后, 倒是很好解决, 参考 [Markdown 拓展 Header 
 
 Typora 里有同目录的文件内容搜索
 
-各大笔记软件, VSCode, VNote 当然更不用说了, 都提供了更强大的搜索
-
+各大支持 md 的笔记软件, 都提供了更强大的搜索, 面向程序员的 VSCode, VNote 之类当然更不用说了
 
 
 自从 Everything v1.4 版本开始, 可以使用文件内容搜索, 语法 `content:`, 例如:
@@ -362,17 +362,23 @@ Typora 里有同目录的文件内容搜索
 
 
 
-问题在于:
+问题在于这两个没找到答案:
 
-1. 搜索文字可以模糊匹配, 有权重, 类似网络搜索引擎
-2. 需要关联笔记推荐
-3. 搜索网络时, 把本地的搜索结果添加到侧栏里 (参考印象笔记 - 剪藏)
-4. 汇总 / 提取 / 搜索自己的高亮和注记
-5. 搜索 Markdown 图片上的文字 (参考印象笔记)
+1. 搜索文字, 对中文友好, 可以模糊匹配, 有权重, 类似网络搜索引擎
+2. 搜索网络时, 把本地的搜索结果添加到侧栏里 (参考印象笔记 - 剪藏)
+
+还有这些需求, 没有也行, 能实现更好:
+
+1. 需要关联笔记推荐
+2. 汇总 / 提取 / 搜索自己的高亮和注记
+3. 搜索 Markdown 图片上的文字 (参考印象笔记)
 
 
+### 在 Markdown 文件使用标签
 
-以上全没找到答案
+有不少应用都提供标签, 一般写在 Front-Matter 里例如: `tags: [tag1, tag2]`, 这样就能识别
+
+VSCode 插件 [Nested Tags](https://marketplace.visualstudio.com/items?itemName=vscode-nested-tags.vscode-nested-tags) 支持多级标签, 跟 Notable 的多级标签类似
 
 
 
